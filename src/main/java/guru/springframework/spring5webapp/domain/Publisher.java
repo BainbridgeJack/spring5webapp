@@ -1,10 +1,9 @@
 package guru.springframework.spring5webapp.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 public class Publisher {
@@ -18,6 +17,10 @@ public class Publisher {
     private String Province;
     private String zipCode;
 
+    @OneToMany
+    @JoinColumn(name = "publisher_id")
+    private Set<Book> publishedBooks = new HashSet<>();
+
     public Publisher() {
     }
 
@@ -26,6 +29,54 @@ public class Publisher {
         City = city;
         Province = province;
         this.zipCode = zipCode;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getAddressLine1() {
+        return addressLine1;
+    }
+
+    public void setAddressLine1(String addressLine1) {
+        this.addressLine1 = addressLine1;
+    }
+
+    public String getCity() {
+        return City;
+    }
+
+    public void setCity(String city) {
+        City = city;
+    }
+
+    public String getProvince() {
+        return Province;
+    }
+
+    public void setProvince(String province) {
+        Province = province;
+    }
+
+    public String getZipCode() {
+        return zipCode;
+    }
+
+    public void setZipCode(String zipCode) {
+        this.zipCode = zipCode;
+    }
+
+    public Set<Book> getPublishedBooks() {
+        return publishedBooks;
+    }
+
+    public void setPublishedBooks(Set<Book> publishedBooks) {
+        this.publishedBooks = publishedBooks;
     }
 
     @Override
