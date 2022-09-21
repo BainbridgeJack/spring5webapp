@@ -2,8 +2,10 @@ package guru.springframework.spring5webapp.bootstrap;
 
 import guru.springframework.spring5webapp.domain.Author;
 import guru.springframework.spring5webapp.domain.Book;
+import guru.springframework.spring5webapp.domain.Publisher;
 import guru.springframework.spring5webapp.repositories.AuthorRepository;
 import guru.springframework.spring5webapp.repositories.BookRepository;
+import guru.springframework.spring5webapp.repositories.PublisherRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -13,11 +15,13 @@ public class BootStrapData implements CommandLineRunner {
 
     private final AuthorRepository authorRepository;
     private final BookRepository bookRepository;
+    private final PublisherRepository publisherRepository;
 
     // Bring this constructor into Spring Context and do Dependency injection for an instance of our Repositories.
-    public BootStrapData(AuthorRepository authorRepository, BookRepository bookRepository) {
+    public BootStrapData(AuthorRepository authorRepository, BookRepository bookRepository, PublisherRepository publisherRepository) {
         this.authorRepository = authorRepository;
         this.bookRepository = bookRepository;
+        this.publisherRepository = publisherRepository;
     }
 
     @Override
@@ -44,9 +48,13 @@ public class BootStrapData implements CommandLineRunner {
         authorRepository.save(rod);
         bookRepository.save(noEJB);
 
-        System.out.println("Started in Bootstrap");
-        System.out.println("Number of books in H2 Database: " + bookRepository.count());
-        System.out.printf("Started in Bootstrap");
-        System.out.printf("Number of books in H2 Database: {%d}", bookRepository.count());
+
+        Publisher jack = new Publisher("123 Main Street", "Moncton", "New Brunswick", "E1A 0A1");
+
+        publisherRepository.save(jack);
+
+        System.out.printf("Started in Bootstrap\n");
+        System.out.printf("Number of books in H2 Database: {%d}\n", bookRepository.count());
+        System.out.printf("Number of publishers in H2 Database: {%d}\n", publisherRepository.count());
     }
 }
