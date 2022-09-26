@@ -31,7 +31,7 @@ public class BootStrapData implements CommandLineRunner {
          * Using Sping Data JPA, this allows us to save our data using hibernate into H2 in memory databse
          */
 
-        Publisher publisher = new Publisher("123 Main Street", "Moncton", "New Brunswick", "E1A 0A1");
+        Publisher publisher = new Publisher("JB Publishing", "123 Main Street", "Moncton", "New Brunswick", "E1A 0A1");
         publisherRepository.save(publisher);
 
         Author eric = new Author("Eric", "Evans");

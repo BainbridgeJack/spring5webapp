@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Spring 5 Course Book List</title>
+</head>
+<body>
+<h1>Book List</h1>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Title</th>
+        <th>Publisher</th>
+    </tr>
+    <!-- Iterate over books via thymeleaf and retrieve book properties from our book model -->
+    <tr th:each="book : ${books}">
+        <td th:text="${book.id}">123</td>
+        <td th:text="${book.title}">Spring into Action</td>
+        <td th:text="${book.publisher.name}">Testing</td>
+    </tr>
+</table>
+</body>
+</html>

@@ -19,7 +19,7 @@ public class BookController {
 
         model.addAttribute("books", bookRepository.findAll());
 
-        // Return the books view.
-        return "books";
+        // Return the books/list thymeleaf template view we've now implemented.
+        return "books/list";
     }
 }
